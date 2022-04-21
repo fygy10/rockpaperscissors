@@ -1,27 +1,35 @@
- //   let play = ["Rock", "Paper", "Scissors"];//
-   
-  //  let computerPlay = play[Math.floor(Math.random()*play.length)];//
+const play = ["rock","paper", "scissors"];
 
-  //  console.log(computerPlay);
+function computerPlay () {
+     return play[Math.floor(Math.random()*play.length)]
+}
 
-
-    let play = ["Rock", "Paper", "Scissors"];
-    let computerPlay = play[Math.floor(Math.random()*play.length)];
-    let greeting = prompt("What would you like to play?")
-        humanPlay = play
-    switch (computerPlay) {
-              case 'Scissors':
-                (humanPlay === "Rock" && computerPlay === "Scissors") 
-                    alert("You win!");
-                    break;
-              case 'Rock':
-                (humanPlay === "Rock" && computerPlay === "Rock") 
-                    alert("It is a tie.");
-                    break;
-              case 'Paper':
-                (humanPlay === "Rock" && computerPlay === "Paper") 
-                    alert("You lose.");
-                    break;
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "Tie";
+    } else if (
+        (playerSelection == 'rock' && computerSelection == 'scissors') ||
+        (playerSelection == 'paper' && computerSelection == 'rock' ) || 
+        (playerSelection == 'scissors' && computerSelection == 'paper')
+        ) {
+        playerScore++;    
+        return "You win!";
+    } else {
+        computerScore++;
+        return "You lose! The computer wins this round."
     }
-    
-    
+      }
+
+playerScore = parseInt(0);
+computerScore = parseInt(0);
+
+function game () {
+    for (i = 0; i <= 5; i++) {
+    let playerSelection = prompt("Pick a move");
+    const computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
+    console.log('Player score = ' + playerScore);
+    console.log('Computer score = ' + computerScore);
+    }
+}
+game ();
